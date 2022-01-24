@@ -1,9 +1,20 @@
-from pytorch_transformers.modeling_bert import BertPreTrainedModel, BertConfig, BertModel
-from pytorch_transformers.modeling_utils import WEIGHTS_NAME, CONFIG_NAME
-from pytorch_transformers.tokenization_bert import BertTokenizer
+from transformers import BertPreTrainedModel, BertModel
+from transformers import WEIGHTS_NAME, CONFIG_NAME
+from transformers import BertTokenizer
 from torch import nn
 import torch,math,logging,os
 from sklearn.metrics import f1_score, precision_score, recall_score
+from transformers import (
+    AutoTokenizer,
+    AutoModel,
+    AutoModelForSeq2SeqLM,
+    BertConfig,
+    LogitsProcessorList,
+    MinLengthLogitsProcessor,
+    TopKLogitsWarper,
+    TemperatureLogitsWarper,
+    BeamSearchScorer,
+)
 
 
 from .document_bert_architectures import DocumentBertLSTM#, DocumentBertLinear, DocumentBertTransformer, DocumentBertMaxPool
