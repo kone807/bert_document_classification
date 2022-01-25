@@ -12,7 +12,7 @@ from torch.nn.init import xavier_uniform_
 from torch.nn.init import constant_
 from torch.nn.init import xavier_normal_
 from torch.nn.parameter import Parameter
-from torch.nn import _VF
+from torch.nn.functional import dropout
 
 def _get_softmax_dim(name, ndim, stacklevel):
     # type: (str, int, int) -> int
@@ -87,9 +87,9 @@ def dropout(input, p=0.5, training=True, inplace=False):
     if p < 0. or p > 1.:
         raise ValueError("dropout probability has to be between 0 and 1, "
                          "but got {}".format(p))
-    return (_VF.dropout_(input, p, training)
+    return (dropout(input, p, training)
             if inplace
-            else _VF.dropout(input, p, training))
+            else dropout(input, p, training))
 
 def multi_head_attention_forward(query,                           # type: Tensor
                                  key,                             # type: Tensor
