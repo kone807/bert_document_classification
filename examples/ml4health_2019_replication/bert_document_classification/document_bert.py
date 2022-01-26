@@ -79,10 +79,10 @@ def encode_documents(documents: list, tokenizer: BertTokenizer, max_input_length
 
 
 document_bert_architectures = {
-    'DocumentBertLSTM': DocumentBertLSTM#,
-  #  'DocumentBertTransformer': DocumentBertTransformer,
-  #  'DocumentBertLinear': DocumentBertLinear,
-  #  'DocumentBertMaxPool': DocumentBertMaxPool
+    'DocumentBertLSTM': DocumentBertLSTM,
+    'DocumentBertTransformer': DocumentBertTransformer,
+    'DocumentBertLinear': DocumentBertLinear,
+    'DocumentBertMaxPool': DocumentBertMaxPool
 }
 
 class BertForDocumentClassification():
