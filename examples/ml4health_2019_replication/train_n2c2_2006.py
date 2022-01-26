@@ -102,7 +102,3 @@ if __name__ == "__main__":
     model = BertForDocumentClassification(args=args)
     model.fit((train_documents, train_labels), (dev_documents,dev_labels))
     
-    model_name = "/models/umlsBERT"
-    with open(model_name,"wb") as file:
-        pickle.dump(model,file)
-    
