@@ -1,4 +1,4 @@
-import sys, os, logging, torch, time, configargparse, socket
+import sys, os, logging, torch, time, configargparse, socket, pickle
 
 #appends current directory to sys path allowing data imports.
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
@@ -101,3 +101,8 @@ if __name__ == "__main__":
 
     model = BertForDocumentClassification(args=args)
     model.fit((train_documents, train_labels), (dev_documents,dev_labels))
+    
+    model_name = "/models/umlsBERT"
+    with open(model_name,"wb") as file:
+        pickle.dump(model,file)
+    
