@@ -2,7 +2,7 @@
 from transformers import BertPreTrainedModel, BertConfig, BertModel
 from torch import nn
 import torch
-#from .transformer import TransformerEncoderLayer, TransformerEncoder
+from .transformer import TransformerEncoderLayer, TransformerEncoder
 
 from torch.nn import LSTM
 class DocumentBertLSTM(BertPreTrainedModel):
