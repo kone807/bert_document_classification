@@ -17,7 +17,7 @@ from transformers import (
 )
 
 
-from .document_bert_architectures import DocumentBertLSTM#, DocumentBertLinear, DocumentBertTransformer, DocumentBertMaxPool
+from .document_bert_architectures import DocumentBertLSTM, DocumentBertLinear, DocumentBertTransformer, DocumentBertMaxPool
 
 def encode_documents(documents: list, tokenizer: BertTokenizer, max_input_length=512):
     """
