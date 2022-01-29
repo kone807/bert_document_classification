@@ -1,6 +1,7 @@
 from transformers import BertPreTrainedModel, BertModel
 from transformers import WEIGHTS_NAME, CONFIG_NAME
-from transformers import BertTokenizer
+# from transformers import BertTokenizer
+from transformers import AutoTokenizer
 from torch import nn
 import torch,math,logging,os
 from sklearn.metrics import f1_score, precision_score, recall_score
@@ -115,7 +116,8 @@ class BertForDocumentClassification():
         assert self.args['labels'] is not None, "Must specify all labels in prediction"
 
         self.log = logging.getLogger()
-        self.bert_tokenizer = BertTokenizer.from_pretrained(self.args['bert_model_path'])
+        # self.bert_tokenizer = BertTokenizer.from_pretrained(self.args['bert_model_path'])
+        self.bert_tokenizer = AutoTokenizer.from_pretrained(self.args['bert_model_path'])
 
 
         #account for some random tensorflow naming scheme
