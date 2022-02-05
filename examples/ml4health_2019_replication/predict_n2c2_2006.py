@@ -1,4 +1,6 @@
 import sys, os, logging, torch
+from tqdm import tqdm
+import pandas as pd
 
 #appends current directory to sys path allowing data imports.
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
@@ -8,7 +10,24 @@ from sklearn.metrics import f1_score, precision_score, recall_score
 from bert_document_classification.models import SmokerPhenotypingBert
 
 
+# +
 log = logging.getLogger()
+
+def get_name(arr):
+
+    #PAST SMOKER, CURRENT SMOKER, NON-SMOKER, UNKNOWN
+    
+    if arr[0]==1:
+        return "PAST SMOKER"
+    elif arr[1]==1:
+        return "CURRENT SMOKER"
+    elif arr[2]==1:
+        return "NON-SMOKER"
+    else:
+        return "UNKNOWN"
+
+
+# -
 
 if __name__ == "__main__":
 
@@ -16,7 +35,7 @@ if __name__ == "__main__":
 
     print(len(test))
 
-    smoking_bert_phenotyper = SmokerPhenotypingBert(model_name="/export/c08/aymulyar/results/document_bert/n2c2_2006/run_2019_09_07_22_03_30_b19/checkpoint_1000", device='cuda') #CPU prediction (change to 'cuda' if possible)
+    smoking_bert_phenotyper = SmokerPhenotypingBert(model_name="/workspace/results/run_2022_01_25_20_01_56_dgxa-000/checkpoint_1000", device='cuda') #CPU prediction (change to 'cuda' if possible)
     labels = smoking_bert_phenotyper.labels
 
     test_documents, test_labels = [],[]
@@ -36,7 +55,29 @@ if __name__ == "__main__":
     precisions = []
     recalls = []
     fmeasures = []
-    for label_idx in range(predictions.shape[0]):
+    
+    df = pd.DataFrame(columns=["Text","Correct","Predicted"])
+    for i in tqdm(range(predictions.shape[1])):
+        
+        c = get_name(test_labels[i])
+        
+        if predictions[0][i]==1:
+            p = "PAST SMOKER"
+        elif predictions[1][i]==1:
+            p = "CURRENT SMOKER"
+        elif predictions[2][i]==1:
+            p = "NON-SMOKER"
+        else:
+            p="UNKNOWN"
+            
+        t = test_documents[i]
+        df.loc[len(df.index)] =  [t, c, p]
+    df.to_csv("test.csv")
+    
+    print("pred",predictions.shape)
+    print(predictions)
+    
+    for label_idx in tqdm(range(predictions.shape[0])):
         correct = correct_labels[label_idx].view(-1).numpy()
         predicted = predictions[label_idx].view(-1).numpy()
         present_f1_score = f1_score(correct, predicted, average='binary', pos_label=1)
@@ -46,7 +87,8 @@ if __name__ == "__main__":
         precisions.append(present_precision_score)
         recalls.append(present_recall_score)
         fmeasures.append(present_f1_score)
-
+        
+        
 
     print('Metric\t' + '\t'.join([labels[label_idx] for label_idx in range(predictions.shape[0])]))
     print('Precision\t' + '\t'.join([str(precisions[label_idx]) for label_idx in range(predictions.shape[0])]))

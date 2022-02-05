@@ -1,5 +1,6 @@
 from transformers import BertPreTrainedModel, BertModel
 from transformers import WEIGHTS_NAME, CONFIG_NAME
+from transformers import BertTokenizer
 # from transformers import BertTokenizer
 from transformers import AutoTokenizer
 from torch import nn
@@ -10,11 +11,11 @@ from transformers import (
     AutoModel,
     AutoModelForSeq2SeqLM,
     BertConfig,
-    LogitsProcessorList,
-    MinLengthLogitsProcessor,
-    TopKLogitsWarper,
-    TemperatureLogitsWarper,
-    BeamSearchScorer,
+   # LogitsProcessorList,
+   # MinLengthLogitsProcessor,
+   # TopKLogitsWarper,
+   # TemperatureLogitsWarper,
+   # BeamSearchScorer,
 )
 
 
@@ -117,8 +118,8 @@ class BertForDocumentClassification():
 
         self.log = logging.getLogger()
         # self.bert_tokenizer = BertTokenizer.from_pretrained(self.args['bert_model_path'])
-        self.bert_tokenizer = AutoTokenizer.from_pretrained(self.args['bert_model_path'])
-
+        #self.bert_tokenizer = AutoTokenizer.from_pretrained(self.args['bert_model_path'])
+        self.bert_tokenizer = BertTokenizer.from_pretrained(self.args['bert_model_path'])
 
         #account for some random tensorflow naming scheme
         if os.path.exists(self.args['bert_model_path']):

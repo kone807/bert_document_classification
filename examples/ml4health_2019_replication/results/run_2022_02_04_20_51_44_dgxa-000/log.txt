@@ -1,0 +1,15 @@
+Config File (n2c2_2006_train_config.ini):
+  model_storage_directory:./results
+  batch_size:        64
+  epochs:            1000
+  evaluation_interval:25
+  checkpoint_interval:250
+  bert_model_path:   GanjinZero/UMLSBert_ENG
+  labels:            PAST SMOKER, CURRENT SMOKER, NON-SMOKER, UNKNOWN
+  architecture:      DocumentBertLSTM
+  bert_batch_size:   7
+  cuda:              true
+  learning_rate:     6e-5
+  weight_decay:      0
+
+Using CUDA device:0
