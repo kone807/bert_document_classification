@@ -19,7 +19,7 @@ from transformers import (
 )
 
 
-from .document_bert_architectures import DocumentBertLSTM, DocumentBertLinear, DocumentBertTransformer, DocumentBertMaxPool
+from .document_bert_architectures import DocumentBertLSTM, DocumentBertLinear, DocumentBertTransformer, DocumentBertMaxPool, DocumentBertMean
 
 def encode_documents(documents: list, tokenizer: BertTokenizer, max_input_length=512):
     """
@@ -84,7 +84,8 @@ document_bert_architectures = {
     'DocumentBertLSTM': DocumentBertLSTM,
     'DocumentBertTransformer': DocumentBertTransformer,
     'DocumentBertLinear': DocumentBertLinear,
-    'DocumentBertMaxPool': DocumentBertMaxPool
+    'DocumentBertMaxPool': DocumentBertMaxPool,
+    'DocumentBertMean': DocumentBertMean
 }
 
 class BertForDocumentClassification():
@@ -92,7 +93,7 @@ class BertForDocumentClassification():
                  labels=None,
                  device='cuda',
                  bert_model_path='bert-base-uncased',
-                 architecture="DocumentBertLSTM",
+                 architecture="DocumentBertMean",
                  batch_size=10,
                  bert_batch_size=7,
                  learning_rate = 5e-5,
