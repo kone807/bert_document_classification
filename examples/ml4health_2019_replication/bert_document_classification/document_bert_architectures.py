@@ -214,7 +214,7 @@ class DocumentBertMean(BertPreTrainedModel):
                                             attention_mask=document_batch[doc_id][:self.bert_batch_size,2])[1])
 
 
-        prediction = self.classifier(bert_output.mean(dim=1)[0])
+        prediction = self.classifier(bert_output.mean(dim=1))
         assert prediction.shape[0] == document_batch.shape[0]
         return prediction
 
