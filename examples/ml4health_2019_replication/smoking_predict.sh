@@ -10,4 +10,4 @@ tar -xf gdrive_2.1.1_linux_386.tar.gz
 ./gdrive download 1hdo60po6lO3puuCkFeZ8q7Pqkq1XQN8X
 tar -xvf umls_BERT_docBERTMean.tar.gz 
 
-python ./train_n2c2_2006.py
+# python ./train_n2c2_2006.py
