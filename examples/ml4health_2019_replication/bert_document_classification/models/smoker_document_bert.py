@@ -9,5 +9,5 @@ class SmokerPhenotypingBert(BertForDocumentClassification):
                          batch_size=batch_size,
                          bert_batch_size=7,
                          bert_model_path=model_path,
-                         architecture='DocumentBertLSTM',
+                         architecture='DocumentBertMean',
                          labels=self.labels)

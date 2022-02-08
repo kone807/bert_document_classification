@@ -1,0 +1,15 @@
+Config File (n2c2_2008_train_config.ini):
+  model_storage_directory:./results_obesity
+  batch_size:        64
+  epochs:            1000
+  evaluation_interval:25
+  checkpoint_interval:250
+  bert_model_path:   emilyalsentzer/Bio_ClinicalBERT
+  labels:            Gout, Venous Insufficiency, Gallstones, Hypertension, Obesity, Asthma, GERD, Hypercholesterolemia, Hypertriglyceridemia, CHF, OSA, OA, PVD, CAD, Depression, Diabetes
+  architecture:      DocumentBertLSTM
+  bert_batch_size:   7
+  cuda:              true
+  learning_rate:     6e-5
+  weight_decay:      0
+
+Using CUDA device:0

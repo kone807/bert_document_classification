@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     print(len(test))
 
-    smoking_bert_phenotyper = SmokerPhenotypingBert(model_name="/workspace/results/run_2022_01_25_20_01_56_dgxa-000/checkpoint_1000", device='cuda') #CPU prediction (change to 'cuda' if possible)
+    smoking_bert_phenotyper = SmokerPhenotypingBert(model_name="/workspace/bert_document_classification/examples/ml4health_2019_replication/results/run_2022_02_07_20_29_03_dgxa-000/checkpoint_1000", device='cuda') #CPU prediction (change to 'cuda' if possible)
     labels = smoking_bert_phenotyper.labels
 
     test_documents, test_labels = [],[]
